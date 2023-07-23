@@ -14,7 +14,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@client/*": ["packages/tracker-client/src/*"],
+      "@server/*": ["packages/tracker-server/src/*"],
+      "@tracker/*" : ["packages/tracker-server/tracker/*"],
+
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
