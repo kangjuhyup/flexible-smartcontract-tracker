@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
-import { TrackerModule } from '@tracker/tracker.module';
+import { TrackerModule } from '@server/tracker/tracker.module';
 
 @Module({
     imports: [
@@ -14,4 +14,4 @@ import { TrackerModule } from '@tracker/tracker.module';
         AdminController
     ]
 })
-export class AdminModule { }
+export class AdminModule {}

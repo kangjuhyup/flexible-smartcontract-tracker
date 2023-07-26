@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { SetContractDto } from '@server/admin/dto/set-contract.dto';
 import { Contract, EventFragment, EventPayload, Fragment, InterfaceAbi, WebSocketProvider } from 'ethers';
 
 interface Event {
@@ -17,44 +18,32 @@ interface Event {
 
 @Injectable()
 export class WebsocketService {
-
-    private provider: WebSocketProvider;
-    private sc: Contract;
+    private contracts: Contract[];
     constructor(
-        endPoint: string,
-        abi: InterfaceAbi,
-        contract_address: string,
-    ) {
-        console.info('[constructor]');
-        this.provider = new WebSocketProvider(endPoint)
-        this._setContract(contract_address, abi);
+    ) {}
+
+
+    async startTracking(event_name: string) {
+        console.info('[startTracking] : ', event_name);
+        this.contracts.map((contract:Contract) => {
+            if(contract.interface.hasEvent(event_name)) {
+                contract.on(event_name, this._eventListener);
+            }
+        });
     }
 
-    async startTracking() {
-        console.info('[startTracking]');
-        const scAbi = this.sc.interface;
-        scAbi.forEachEvent(async (event: EventFragment) => {
-            this.sc.on(event.name, this._eventListener);
-        })
+
+    getSmartContracts() {
+        console.info('[getSmartContracts]');
+        return this.contracts;
     }
 
-    getProvider(): WebSocketProvider {
-        console.info('[getProvider]');
-        if (!this.provider) throw Error('Provider is not set.')
-        return this.provider;
-    }
-
-    getSmartContract() {
-        console.info('[getSmartContract]');
-        return this.sc;
-    }
-
-    _setContract(
-        contract_address: string,
-        abi: InterfaceAbi,
+    setContract(
+        dto:SetContractDto
     ) {
         console.info('[_setContract]');
-        this.sc = new Contract(contract_address, abi, this.getProvider());
+        const provider = new WebSocketProvider(dto.provider_url);
+        this.contracts.push(new Contract(dto.contract_address, dto.abi, provider));
     }
 
     _eventListener(from: string, to: string, value: BigInt, event: any) {

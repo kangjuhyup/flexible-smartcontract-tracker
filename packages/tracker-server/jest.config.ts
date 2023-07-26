@@ -1,11 +1,11 @@
 /* eslint-disable */
 export default {
-  displayName: 'tracekr-server',
+  displayName: 'tracker-server',
   preset: '../../jest.preset.js',
   testEnvironment: 'node',
   transform: {
     '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/packages/tracekr-server',
+  coverageDirectory: '../../coverage/packages/tracker-server',
 };

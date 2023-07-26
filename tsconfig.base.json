@@ -16,7 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@client/*": ["packages/tracker-client/src/*"],
-      "@server/*": ["packages/tracker-server/src/*"],      
+      "@server/*": ["packages/tracker-server/src/app/*"],      
 
     }
   },

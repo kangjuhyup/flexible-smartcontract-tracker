@@ -1,7 +1,7 @@
 {
-  "name": "tracekr-server",
+  "name": "tracker-server",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/tracekr-server/src",
+  "sourceRoot": "packages/tracker-server/src",
   "projectType": "application",
   "targets": {
     "build": {
@@ -11,12 +11,12 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
-        "outputPath": "dist/packages/tracekr-server",
-        "main": "packages/tracekr-server/src/main.ts",
-        "tsConfig": "packages/tracekr-server/tsconfig.app.json",
-        "assets": ["packages/tracekr-server/src/assets"],
+        "outputPath": "dist/packages/tracker-server",
+        "main": "packages/tracker-server/src/main.ts",
+        "tsConfig": "packages/tracker-server/tsconfig.app.json",
+        "assets": ["packages/tracker-server/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "packages/tracekr-server/webpack.config.js"
+        "webpackConfig": "packages/tracker-server/webpack.config.js"
       },
       "configurations": {
         "development": {},
@@ -27,14 +27,14 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "tracekr-server:build"
+        "buildTarget": "tracker-server:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "tracekr-server:build:development"
+          "buildTarget": "tracker-server:build:development"
         },
         "production": {
-          "buildTarget": "tracekr-server:build:production"
+          "buildTarget": "tracker-server:build:production"
         }
       }
     },
@@ -42,14 +42,14 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/tracekr-server/**/*.ts"]
+        "lintFilePatterns": ["packages/tracker-server/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "packages/tracekr-server/jest.config.ts",
+        "jestConfig": "packages/tracker-server/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {

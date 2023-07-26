@@ -3,9 +3,9 @@ import { TrackerService } from './tracker.service';
 import { TrackerController } from './tracker.controller';
 
 @Module({
-    imports :[
-    ],
+  imports: [],
   providers: [TrackerService],
-  controllers: [TrackerController]
+  controllers: [TrackerController],
+  exports: [TrackerService],
 })
 export class TrackerModule {}
